@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Surprise</title>
+  <style>
+    body {
+      background: linear-gradient(to bottom right, #ffb3ec, #ffe6f0);
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding: 40px 20px;
+      color: #8b005d;
+      overflow: auto;
+    }
+    .card {
+      background-color: white;
+      border-radius: 15px;
+      padding: 30px;
+      max-width: 600px;
+      margin: auto;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      position: relative;
+      z-index: 2;
+    }
+    h1 {
+      font-size: 2.5em;
+      color: #ff3366;
+    }
+    p {
+      font-size: 1.2em;
+      margin: 15px 0;
+    }
+    img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 12px;
+      margin: 20px auto;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    video, audio {
+      margin-top: 20px;
+      width: 100%;
+      max-width: 500px;
+      border-radius: 12px;
+    }
+    .heart {
+      font-size: 2em;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+    .hearts-falling {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+    .hearts-falling span {
+      position: absolute;
+      color: red;
+      font-size: 1.5em;
+      animation: fall 8s linear infinite;
+      opacity: 0.7;
+    }
+    @keyframes fall {
+      0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+    .firework {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background-color: gold;
+      border-radius: 50%;
+      animation: explode 1.2s ease-out forwards;
+    }
+    @keyframes explode {
+      0% { opacity: 1; transform: scale(1); }
+      100% { opacity: 0; transform: scale(10); }
+    }
+  </style>
+</head>
+<body>
+  <div class="hearts-falling"></div>
+  <div class="card">
+    <h1>Happy Girlfriend's Day ❤️</h1>
+    <p>Dear Unnati ji , my baccha </p>
+    <p class="heart">❤️ ❤️ ❤️</p>
+    <p>Here's a little effort  for you:</p>
+
+    <img src="your-photo.jpg" alt="Your Photo" />
+    
+    <video controls>
+      <source src="your-video.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+
+    <audio controls>
+      <source src="your-voice.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+
+    <p style="margin-top: 30px; font-size: 1.4em;">
+      I feel lucky every moment you're with me. 💖<br />
+      Can't express how much I love you!<br />
+      <span class="heart">❤️</span>
+    </p>
+  </div>
+
+  <script>
+    // Falling hearts bonus
+    const container = document.querySelector('.hearts-falling');
+    for (let i = 0; i < 50; i++) {
+      const heart = document.createElement('span');
+      heart.textContent = '❤️';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+      heart.style.fontSize = (Math.random() * 1.5 + 1) + 'em';
+      container.appendChild(heart);
+    }
+
+    // Fireworks on click bonus
+    document.addEventListener('click', function(e) {
+      for (let i = 0; i < 10; i++) {
+        const firework = document.createElement('div');
+        firework.className = 'firework';
+        firework.style.top = (e.clientY - 2) + 'px';
+        firework.style.left = (e.clientX - 2) + 'px';
+        document.body.appendChild(firework);
+        setTimeout(() => firework.remove(), 1200);
+      }
+    });
+  </script>
+</body>
+</html>
